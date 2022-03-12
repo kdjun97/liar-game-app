@@ -13,3 +13,4 @@
 - Validation Check 기능 추가
 - Custom Elevated Button 추가  
 - Server Room Page에 Custom Elevated Button 적용  
+- Server 방만들기 페이지 overflow 감지. ListView로 바꿀 예정.  

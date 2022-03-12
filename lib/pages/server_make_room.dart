@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
-import 'package:get_ip_address/get_ip_address.dart';
+import 'package:liar_getx/utils/custom_elevated_button.dart';
 import 'package:liar_getx/utils/custom_text_form_field.dart';
 
 // 서버 측 방 만들기 페이지
@@ -47,10 +47,8 @@ class ServerMakeRoom extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _customButton('Load IP', false, formKey), // false : Load IP Button
-                      _customButton('방만들기', true, formKey), // false : Load IP Button
-                      //_getIpButton(),
-                      //_readyButton()
+                      CustomElevatedButton(title: 'Load IP', condition: false, formKey: formKey), // false : Load IP Button
+                      CustomElevatedButton(title: '방만들기', condition: true, formKey: formKey), // false : Load IP Button
                     ],
                   )
                 ]
@@ -58,52 +56,5 @@ class ServerMakeRoom extends StatelessWidget {
         ),
       )
     );
-  }
-
-  Widget _customButton(String title, bool condition, GlobalKey<FormState> formKey) {
-    return (condition) ? ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.black,
-      ),
-      child: Text(title),
-      onPressed: () {
-        formKey.currentState!.validate() ? _readOk() : print('No validation check');
-      }) : ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.black,
-        ),
-        child: Text(title),
-        onPressed: () => _loadIp()
-      );
-  }
-
-  Widget _getIpButton() {
-    return RaisedButton(
-      child: Text("Load IP"),
-      onPressed: () async => await _loadIp(),
-    );
-  }
-
-  Future<void> _loadIp() async {
-    try {
-      var ipAddress = IpAddress(type: RequestType.json);
-      dynamic data = await ipAddress.getIpAddress();
-      print(data['ip']);
-      formController.onChangeIp(data['ip']);
-      myInfoController.onChange(data['ip']);
-    } on IpAddressException catch (exception) {
-      print(exception.message);
-    }
-  }
-
-  Widget _readyButton() {
-    return RaisedButton(
-      child: Text("방만들기"),
-      onPressed: ()=>_readOk(),
-    );
-  }
-
-  Future<void> _readOk() async {
-    print("준비 ok");
   }
 }

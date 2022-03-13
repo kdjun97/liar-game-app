@@ -21,3 +21,4 @@
 - ADD func
 - Custom App Bar 구현
 - Server Home Page 구현
+- User Connection시, face info UI 구현

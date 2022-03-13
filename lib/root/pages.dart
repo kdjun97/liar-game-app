@@ -6,6 +6,7 @@ import 'package:liar_getx/pages/server_home.dart';
 import 'package:liar_getx/pages/server_make_room.dart';
 import 'package:liar_getx/binding/myinfo_binding.dart';
 import 'package:liar_getx/binding/form_binding.dart';
+import 'package:liar_getx/binding/game_binding.dart';
 
 class Pages {
   static final routes = [
@@ -19,7 +20,8 @@ class Pages {
       page: () => ServerMakeRoom(),
       bindings: [
         MyInfoBinding(),
-        FormBinding()
+        FormBinding(),
+        GameBinding()
       ],
       transition: Transition.leftToRight,
     ),

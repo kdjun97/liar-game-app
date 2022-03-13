@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
 import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
+import 'package:liar_getx/controller/game_controller.dart';
 
 class CustomButtonHandle {
   // onPressed widgets/custom_raised_button
@@ -52,9 +53,12 @@ class CustomButtonHandle {
   Future<void> readyOk() async {
     MyInfoController myInfoController = Get.find<MyInfoController>();
     FormController formController = Get.find<FormController>();
+    GameController gameController = Get.find<GameController>();
 
     myInfoController.setMyName(formController.nameController.text);
     myInfoController.setSrvIp(formController.myIpController.text);
+    gameController.setUser(formController.nameController.text);
+
     Get.toNamed('/ServerHome');
   }
 }

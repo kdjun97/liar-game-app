@@ -19,3 +19,5 @@
 - Rename directory: utils->widgets  
 - Remove directory: utils
 - ADD func
+- Custom App Bar 구현
+- Server Home Page 구현

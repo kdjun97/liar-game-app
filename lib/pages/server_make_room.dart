@@ -14,46 +14,35 @@ class ServerMakeRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("방만들기", style : TextStyle(color: Colors.white)), backgroundColor : Colors.black),
-      body: Form(
-        key: formKey,
-        child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child:
-                    Image.asset('assets/배너2.jpg'),
-                    margin: EdgeInsets.all(10.0)
-                  ),
-                  GetBuilder<MyInfoController>(builder: (_) {
-                    return Text("내 IP : ${myInfoController.myIp}",style: TextStyle(fontSize: 25));
-                  }),
-                  GetBuilder<FormController>(builder: (_) {
-                    return CustomTextFormField(name: '닉네임설정', controller: formController.nameController, obsc: false, size: Size(Get.width, Get.height));
-                  }),
-                  GetBuilder<FormController>(builder: (_) {
-                    return CustomTextFormField(name: '내IP 설정', controller: formController.myIpController, obsc: false, size: Size(Get.width, Get.height));
-                  }),
-                  /*GetBuilder<FormController>(builder: (_) {
-                    return ListTile(
-                        leading: const Text(
-                            "내 IP 설정  ", style: TextStyle(fontSize: 15)),
-                        dense: true,
-                        title: CustomTextFormField(
-                            controller: formController.myIpController)
-                    );
-                  }),*/
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(title: const Text("방만들기", style : TextStyle(color: Colors.white)), backgroundColor : Colors.black),
+      body: ListView(
+        children: [
+          const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+          Image.asset('assets/배너2.jpg'),
+          GetBuilder<MyInfoController>(builder: (_) {
+            return Column(
+              children: [
+                Text("내 IP : ${myInfoController.myIp}",style: const TextStyle(fontSize: 25)),
+                Form(
+                  key: formKey,
+                  child: Column(
                     children: [
-                      CustomElevatedButton(title: 'Load IP', condition: false, formKey: formKey), // false : Load IP Button
-                      CustomElevatedButton(title: '방만들기', condition: true, formKey: formKey), // false : Load IP Button
+                      CustomTextFormField(name: '닉네임설정', controller: formController.nameController, obsc: false, size: Size(Get.width, Get.height)),
+                      CustomTextFormField(name: '내IP 설정', controller: formController.myIpController, obsc: false, size: Size(Get.width, Get.height))
                     ],
                   )
-                ]
-            )
-        ),
+                )
+              ],
+            );
+          }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomElevatedButton(title: 'Load IP', condition: false, formKey: formKey), // false : Load IP Button
+              CustomElevatedButton(title: '방만들기', condition: true, formKey: formKey), // false : Load IP Button
+            ],
+          )
+        ],
       )
     );
   }

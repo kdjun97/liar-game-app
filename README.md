@@ -22,3 +22,9 @@
 - Custom App Bar 구현
 - Server Home Page 구현
 - User Connection시, face info UI 구현
+
+
+TODO: Client Join page와 Server Room Page 합치기 (두개 다 필요없음)
+- client join 페이지는 bool값으로 textformField하나만 더 있으면 됨.
+- appBar에 Get.back하나 추가해주기.
+- 마무리 되면 Client Join Page관련 파일 지우기

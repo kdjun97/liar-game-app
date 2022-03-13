@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
-import 'package:liar_getx/utils/custom_elevated_button.dart';
-import 'package:liar_getx/utils/custom_text_form_field.dart';
+import 'package:liar_getx/widgets/custom_elevated_button.dart';
+import 'package:liar_getx/widgets/custom_text_form_field.dart';
 
 // 서버 측 방 만들기 페이지
 class ServerMakeRoom extends StatelessWidget {

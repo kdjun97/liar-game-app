@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:liar_getx/utils/custom_raised_button.dart';
+import 'package:liar_getx/widgets/custom_raised_button.dart';
 
 // 첫 게임 시작할 때 페이지
 class StartRoom extends StatelessWidget {

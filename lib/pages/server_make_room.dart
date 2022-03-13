@@ -4,6 +4,7 @@ import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
 import 'package:liar_getx/widgets/custom_elevated_button.dart';
 import 'package:liar_getx/widgets/custom_text_form_field.dart';
+import 'package:liar_getx/utils/custom_app_bar.dart';
 
 // 서버 측 방 만들기 페이지
 class ServerMakeRoom extends StatelessWidget {
@@ -14,7 +15,7 @@ class ServerMakeRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("방만들기", style : TextStyle(color: Colors.white)), backgroundColor : Colors.black),
+      appBar: CustomAppBar(appBar: AppBar() ,title: "방만들기", backButton: false),
       body: ListView(
         children: [
           const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),

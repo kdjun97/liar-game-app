@@ -4,9 +4,6 @@ import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
 
 class CustomButtonHandle {
-  MyInfoController myInfoController = Get.find<MyInfoController>();
-  FormController formController = Get.find<FormController>();
-
   // onPressed widgets/custom_raised_button
   void buttonCase(int num) {
     switch (num) {
@@ -37,19 +34,27 @@ class CustomButtonHandle {
 
   // onPressed widgets/custom_elevated_button
   Future<void> loadIp() async {
+    MyInfoController myInfoController = Get.find<MyInfoController>();
+    FormController formController = Get.find<FormController>();
+
     try {
       var ipAddress = IpAddress(type: RequestType.json);
       dynamic data = await ipAddress.getIpAddress();
       print("Load IP Address Info :[${data['ip']}]");
       formController.onChangeIp(data['ip']);
-      myInfoController.onChange(data['ip']);
+      myInfoController.onChangeIp(data['ip']);
     } on IpAddressException catch (exception) {
       print(exception.message);
     }
   }
 
   // onPressed widgets/custom_elevated_button
-  Future<void> readOk() async {
-    print("준비 ok");
+  Future<void> readyOk() async {
+    MyInfoController myInfoController = Get.find<MyInfoController>();
+    FormController formController = Get.find<FormController>();
+
+    myInfoController.setMyName(formController.nameController.text);
+    myInfoController.setSrvIp(formController.myIpController.text);
+    Get.toNamed('/ServerHome');
   }
 }

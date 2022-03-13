@@ -15,7 +15,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         child: Text(title),
         onPressed: () {
-          formKey.currentState!.validate() ? CustomButtonHandle().readOk() : print('No validation check');
+          formKey.currentState!.validate() ? CustomButtonHandle().readyOk() : print('No validation check');
         }) : ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.black,

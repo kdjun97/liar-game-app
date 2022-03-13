@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:liar_getx/controller/myinfo_controller.dart';
-import 'package:liar_getx/controller/form_controller.dart';
 import 'package:liar_getx/func/custom_button_handle.dart';
 
 class CustomElevatedButton extends StatelessWidget {

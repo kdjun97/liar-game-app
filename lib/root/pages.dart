@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:liar_getx/root/routes.dart';
 import 'package:liar_getx/pages/start_room.dart';
-import 'package:liar_getx/pages/client_join.dart';
+import 'package:liar_getx/pages/client_home.dart';
 import 'package:liar_getx/pages/server_home.dart';
-import 'package:liar_getx/pages/server_make_room.dart';
+import 'package:liar_getx/pages/make_room.dart';
 import 'package:liar_getx/binding/myinfo_binding.dart';
 import 'package:liar_getx/binding/form_binding.dart';
 import 'package:liar_getx/binding/game_binding.dart';
@@ -16,8 +16,8 @@ class Pages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: Routes.SERVERMAKEROOM,
-      page: () => ServerMakeRoom(),
+      name: Routes.MAKEROOM,
+      page: () => MakeRoom(),
       bindings: [
         MyInfoBinding(),
         FormBinding(),
@@ -30,13 +30,10 @@ class Pages {
       page: () => ServerHome(),
       transition: Transition.noTransition,
     ),
-    /*
     GetPage(
-      name: Routes.CLIENTJOIN,
-      page: () => ClientJoin(),
-      binding: SignBinding(),
+      name: Routes.CLIENTHOME,
+      page: () => ClientHome(),
       transition: Transition.noTransition,
-    ),*/
-
+    ),
   ];
 }

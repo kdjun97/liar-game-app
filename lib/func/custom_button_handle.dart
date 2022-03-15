@@ -9,10 +9,10 @@ class CustomButtonHandle {
   void buttonCase(int num) {
     switch (num) {
       case 0:
-        Get.offNamed('/ServerMakeRoom');
+        Get.offNamed('/MakeRoom', arguments: "방만들기");
         break;
       case 1:
-        Get.offNamed('/ClientJoin');
+        Get.offNamed('/MakeRoom',arguments: "접속하기");
         break;
       case 2:
         Get.defaultDialog(
@@ -50,15 +50,22 @@ class CustomButtonHandle {
   }
 
   // onPressed widgets/custom_elevated_button
-  Future<void> readyOk() async {
+  Future<void> readyOk(String title) async {
     MyInfoController myInfoController = Get.find<MyInfoController>();
     FormController formController = Get.find<FormController>();
     GameController gameController = Get.find<GameController>();
 
     myInfoController.setMyName(formController.nameController.text);
-    myInfoController.setSrvIp(formController.myIpController.text);
     gameController.setUser(formController.nameController.text);
+    if (title == "방만들기") {
+      myInfoController.setSrvIp(formController.myIpController.text);
+      Get.toNamed('/ServerHome');
+    }
+    else {
+      myInfoController.setSrvIp(formController.srvIpController.text);
+      Get.toNamed('/ClientHome');
+    }
 
-    Get.toNamed('/ServerHome');
+
   }
 }

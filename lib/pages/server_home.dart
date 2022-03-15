@@ -29,7 +29,7 @@ class ServerHome extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
                         child: RaisedButton(
-                          child: const Text("게임시작"),
+                          child: Text("게임시작"),
                           onPressed: ()=> print("게임시작"),
                         )
                       ),

@@ -32,5 +32,4 @@
 - 필요없는 페이지 삭제
 
 TODO:  
-- ServerSocket 부분도 버튼이랑 연결해줘야함.  
-- Socket Connection까지  
+- socketController, gameController 충돌 문제 해결해야함.

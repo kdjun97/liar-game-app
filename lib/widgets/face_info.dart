@@ -22,7 +22,7 @@ class FaceInfo extends StatelessWidget {
               child: Image.asset(
                 'assets/${name}.jpg',
                 width: 35,
-                height: 23,
+                height: 25,
                 fit: BoxFit.cover,
               ),
             ),
@@ -31,7 +31,7 @@ class FaceInfo extends StatelessWidget {
             //onTap: ()=>print('zzzz'), // 여기 지우면 글자 눌렀을 때 안뜸
             child: Text("${nick.trim()}",
               style: TextStyle(
-                fontSize: 10.0,
+                fontSize: 11.0,
               ),),
           )
         ]

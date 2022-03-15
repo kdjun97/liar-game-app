@@ -23,7 +23,7 @@ class Pages {
         FormBinding(),
         GameBinding()
       ],
-      transition: Transition.leftToRight,
+      transition: Transition.noTransition,
     ),
     GetPage(
       name: Routes.SERVERHOME,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // customized AppBar
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: ()=> Get.back()),
       title: Text(title, style : const TextStyle(color: Colors.white)),
       backgroundColor : Colors.black,
       automaticallyImplyLeading: backButton

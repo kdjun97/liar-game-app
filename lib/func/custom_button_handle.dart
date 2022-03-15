@@ -9,10 +9,10 @@ class CustomButtonHandle {
   void buttonCase(int num) {
     switch (num) {
       case 0:
-        Get.offNamed('/MakeRoom', arguments: "방만들기");
+        Get.toNamed('/MakeRoom', arguments: "방만들기");
         break;
       case 1:
-        Get.offNamed('/MakeRoom',arguments: "접속하기");
+        Get.toNamed('/MakeRoom',arguments: "접속하기");
         break;
       case 2:
         Get.defaultDialog(

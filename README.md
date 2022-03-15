@@ -1,5 +1,8 @@
 # Code Refactoring
 
+### Blog
+[Tech Blog](https://kdjun97.github.io/blog/Project_Liar/)   
+
 ### Log
 
 2022.03.11  

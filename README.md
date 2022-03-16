@@ -31,5 +31,12 @@
 - Custom AppBar에 뒤로가기 기능 추가
 - 필요없는 페이지 삭제
 
+2022.03.16
+- startServer 가능
+- Server측 Timer 기능 구현
+- Socket Controller추가
+- 서버에서 처리할 각종 socket 기능들 구현 완료
+
 TODO:  
-- socketController, gameController 충돌 문제 해결해야함.
+- faceInfo 클릭시 투표기능 추가
+- Message List 해결

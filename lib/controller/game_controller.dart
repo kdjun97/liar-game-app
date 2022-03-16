@@ -167,7 +167,6 @@ class GameController extends GetxController {
     socketController.broadcast("${data[0]}code1:::"+"${data[1]}code2:::"+data[2]);
     submitController.clear();
     data.clear();
-    msgList.forEach((element) {print(element);});
   }
 
   void handleMessageList() {

@@ -36,7 +36,9 @@
 - Server측 Timer 기능 구현
 - Socket Controller추가
 - 서버에서 처리할 각종 socket 기능들 구현 완료
+- Message List UI 표현 완료
 
 TODO:  
 - faceInfo 클릭시 투표기능 추가
-- Message List 해결
+- 클라이언트 구현
+- 클라이언트 data 송수신 확인

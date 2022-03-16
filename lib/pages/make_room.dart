@@ -8,7 +8,6 @@ import 'package:liar_getx/utils/custom_app_bar.dart';
 
 // 서버 측 방 만들기 페이지
 class MakeRoom extends StatelessWidget {
-
   MyInfoController myInfoController = Get.find<MyInfoController>();
   FormController formController = Get.find<FormController>();
   final formKey = GlobalKey<FormState>(); // For SignUp Page, validation check variable

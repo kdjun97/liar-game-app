@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:liar_getx/binding/socket_binding.dart';
 import 'package:liar_getx/root/routes.dart';
 import 'package:liar_getx/pages/start_room.dart';
 import 'package:liar_getx/pages/client_home.dart';
@@ -21,7 +22,8 @@ class Pages {
       bindings: [
         MyInfoBinding(),
         FormBinding(),
-        GameBinding()
+        GameBinding(),
+        SocketBinding()
       ],
       transition: Transition.noTransition,
     ),

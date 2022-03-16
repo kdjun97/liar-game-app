@@ -56,9 +56,9 @@ class CustomButtonHandle {
     GameController gameController = Get.find<GameController>();
 
     myInfoController.setMyName(formController.nameController.text);
-    gameController.setUser(formController.nameController.text);
     if (title == "방만들기") {
       myInfoController.setSrvIp(formController.myIpController.text);
+      gameController.setUser(formController.nameController.text, formController.myIpController.text);
       Get.toNamed('/ServerHome');
     }
     else {

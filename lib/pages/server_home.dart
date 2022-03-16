@@ -65,9 +65,9 @@ class ServerHome extends StatelessWidget {
               ),
             );
           }),
-          // GetBuilder(builder: (_){
-          //   return MessageListWidget(msgList: gameController.msgList);
-          // }),
+          GetBuilder<GameController>(builder: (_) {
+            return MessageListWidget(msgList: gameController.msgList);
+          }),
           SubmitWidget(),
         ],
       )

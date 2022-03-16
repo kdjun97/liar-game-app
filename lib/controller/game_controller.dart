@@ -167,6 +167,7 @@ class GameController extends GetxController {
     socketController.broadcast("${data[0]}code1:::"+"${data[1]}code2:::"+data[2]);
     submitController.clear();
     data.clear();
+    msgList.forEach((element) {print(element);});
   }
 
   void handleMessageList() {
@@ -238,14 +239,12 @@ class GameController extends GetxController {
 
     Timer _timer = Timer.periodic(const Duration(seconds: 1),
       (Timer timer) {
-        print("t");
           if (time.value < 1) {
             timer.cancel();
             _showVote();   //투표 알림창
             subTimer(); //투표 시간 초 시작
           } else {
             time.value = time.value - 1;
-            print("타이머감소 ${time.value}");
           }
         },
     );

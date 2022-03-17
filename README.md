@@ -42,3 +42,4 @@ TODO:
 - faceInfo 클릭시 투표기능 추가
 - 클라이언트 구현
 - 클라이언트 data 송수신 확인
+- startServer와 readOk함수의 setUser 로직 변경

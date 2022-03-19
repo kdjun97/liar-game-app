@@ -2,8 +2,7 @@ import 'package:get/get.dart';
 import 'package:liar_getx/binding/socket_binding.dart';
 import 'package:liar_getx/root/routes.dart';
 import 'package:liar_getx/pages/start_room.dart';
-import 'package:liar_getx/pages/client_home.dart';
-import 'package:liar_getx/pages/server_home.dart';
+import 'package:liar_getx/pages/game_home.dart';
 import 'package:liar_getx/pages/make_room.dart';
 import 'package:liar_getx/binding/myinfo_binding.dart';
 import 'package:liar_getx/binding/form_binding.dart';
@@ -28,13 +27,8 @@ class Pages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: Routes.SERVERHOME,
-      page: () => ServerHome(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
-      name: Routes.CLIENTHOME,
-      page: () => ClientHome(),
+      name: Routes.GAMEHOME,
+      page: () => GameHome(),
       transition: Transition.noTransition,
     ),
   ];

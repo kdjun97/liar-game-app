@@ -14,6 +14,7 @@ class SocketController extends GetxController {
   {
     GameController gameController = Get.find<GameController>();
     Get.snackbar('System Msg', "방생성 완료", snackPosition: SnackPosition.BOTTOM);
+
     gameController.onChangeRoom();
     serverSocket = await ServerSocket.bind(InternetAddress.anyIPv4, port, shared: true); // shared를 true 해줌으로써 iterative 서버가 생성
     serverSocket.listen(handleClient); // client가 connection 요청을 할 때, 콜백함수 실행

@@ -38,6 +38,9 @@
 - 서버에서 처리할 각종 socket 기능들 구현 완료
 - Message List UI 표현 완료
 
+2022.03.19
+- Client 페이지 삭제
+
 TODO:  
 - faceInfo 클릭시 투표기능 추가
 - 클라이언트 구현

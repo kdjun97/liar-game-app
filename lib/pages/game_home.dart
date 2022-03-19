@@ -16,31 +16,47 @@ class GameHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(appBar: AppBar() ,title: "서버", backButton: false),
+      appBar: (gameController.isServer) ? CustomAppBar(appBar: AppBar() ,title: "서버", backButton: false)
+        :  CustomAppBar(appBar: AppBar() ,title: "클라이언트", backButton: false),
       body: Column(
         children: [
           Row(
             children: [
               const Padding(padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0), child: Text("남은시간 :")),
               Obx((){
-                return (gameController.isGameStart) ? Text("${gameController.time.value}") : Text("${gameController.time.value-1}");
+                return (gameController.isServer) ? (
+                  (gameController.isGameStart) ? Text("${gameController.time.value}") : Text("${gameController.time.value-1}")
+                ) : (
+                  (gameController.isGameStart) ? Text("${gameController.time.value}") : Text("${gameController.time.value-1}")
+                );
               }),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0),
                 child: GetBuilder<GameController>(builder: (_) {
                   return Row(
                     children: [
+                      (gameController.isServer) ?
                       Padding(
                         padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
                         child: RaisedButton(
                           child: Text("게임시작"),
-                          onPressed: ()=> gameController.showWord(),
+                          onPressed: () {
+                            (gameController.isConnect) ? gameController.showWord() :
+                            Get.snackbar('Error', "생성된 방이 없습니다", snackPosition: SnackPosition.BOTTOM);
+                          },
                         )
+                      ) : Padding(
+                          padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
+                          child: RaisedButton(
+                            child: Text("접속하기"),
+                            onPressed: ()=> print("접속하기"),
+                          )
                       ),
+                      (gameController.isServer) ?
                       RaisedButton(
                         child: (gameController.isConnect) ? const Text("방폭파") : const Text("방생성") ,
                         onPressed: ()=> (gameController.isConnect) ? socketController.stopServer() : socketController.startServer(),
-                      ),
+                      ) : Container(),
                     ],
                   );
                 })

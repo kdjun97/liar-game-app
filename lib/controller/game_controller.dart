@@ -10,6 +10,7 @@ import 'package:liar_getx/widgets/message_list_widget.dart';
 
 // 게임에 관련된 클래스
 class GameController extends GetxController {
+  late bool isServer;
 
   late TextEditingController submitController = TextEditingController(); // submit textForm
   MyInfoController myInfoController = Get.find<MyInfoController>();
@@ -47,6 +48,8 @@ class GameController extends GetxController {
     '심층수','화산', '폭포','바위','라면','의자','tv','라디오','에어컨','히터','계곡','수제비','결혼','여행','마카롱','웹툰','동상','찜닭','김밥','나사',
     '엘리베이터','거울','양말'
   ]; // 총 163개
+
+  void setServer(bool ck) => isServer=ck;
 
   void setUser(String nick, String host)
   {
@@ -161,7 +164,7 @@ class GameController extends GetxController {
       }
     }
 
-    data = makeData(myInfoController.srvIp, myInfoController.myName, submitController.text); // exception 가능성
+    data = makeData(myInfoController.myIp, myInfoController.myName, submitController.text);
     handleMessageList();
 
     socketController.broadcast("${data[0]}code1:::"+"${data[1]}code2:::"+data[2]);
@@ -170,6 +173,7 @@ class GameController extends GetxController {
   }
 
   void handleMessageList() {
+    print("${data[0]}/${data[1]}/${data[2]}");
     msgList.insert(0, MessageItem(data[0],data[1],data[2]));
     update();
   }

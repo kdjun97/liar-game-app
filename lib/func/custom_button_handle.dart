@@ -56,14 +56,18 @@ class CustomButtonHandle {
     GameController gameController = Get.find<GameController>();
 
     myInfoController.setMyName(formController.nameController.text);
+    // Server Page
     if (title == "방만들기") {
       myInfoController.setSrvIp(formController.myIpController.text);
+      gameController.setServer(true); // 서버 셋팅
       gameController.setUser(formController.nameController.text, formController.myIpController.text);
-      Get.toNamed('/ServerHome');
+      Get.toNamed('/GameHome');
     }
-    else {
+    else { // Client Page
+      // Client 접속 시, 로직 변경해야할 수 있음.
+      gameController.setServer(false); // 클라이언트 셋팅
       myInfoController.setSrvIp(formController.srvIpController.text);
-      Get.toNamed('/ClientHome');
+      Get.toNamed('/GameHome');
     }
 
 

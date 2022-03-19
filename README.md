@@ -40,10 +40,11 @@
 
 2022.03.19
 - Client 페이지 삭제
+- 두개의 서버가 생기는 오류 해결
+- Server, Client페이지 GamePage로 합침
+- Message 오류 해결(자신이 보낸 메시지가 왼쪽에 가는 현상 해결)
 
 TODO:  
 - faceInfo 클릭시 투표기능 추가
 - 클라이언트 구현
 - 클라이언트 data 송수신 확인
-- 방생성-방폭파-방생성시 동일한 인물이 2명 들어오는 버그 해결해야함
-- Server, Client Home 코드 합치기 (bool값으로)

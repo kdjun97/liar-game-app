@@ -33,8 +33,10 @@ class GameController extends GetxController {
   late int liar; // liar의 index
   late int wordNum; // random하게 정해진 word의 index
 
-  bool isConnect = false; // 소켓 연결 되었는지 알려주는 bool 값(방생성)
-  late ServerSocket serverSocket;
+  bool isServerConnect = false; // 소켓 연결 되었는지 알려주는 bool 값(방생성)
+  bool isClientConnect = false; // 클라이언트용 연결 여부 알려주는 bool 값
+  late ServerSocket serverSocket; // 서버용
+  late Socket clientSocket; // 클라이언트용
 
   // 추후 모델로 가지고 있어도 좋을 것 같음.
   List<String> word =
@@ -62,7 +64,7 @@ class GameController extends GetxController {
 
   // 방생성 방폭파 버튼
   onChangeRoom() {
-    isConnect = !isConnect;
+    isServerConnect = !isServerConnect;
     update();
   }
 
@@ -84,6 +86,91 @@ class GameController extends GetxController {
       nickListInfo[i] = "";
       imageInfo[i] = false;
     }
+    update();
+  }
+
+  // 클라이언트 -> 서버에 연결
+  void connectToServer() async
+  {
+    print("Destination Address: ${myInfoController.srvIp}");
+
+    await Socket.connect(myInfoController.srvIp, socketController.port, timeout: Duration(seconds: 5))
+        .then
+      ((socket) {
+        clientSocket = socket;
+        isClientConnect = true;
+        update();
+
+        sendMessage("${clientSocket.remoteAddress.toString()}connection:::${myInfoController.myName}"); // 클라이언트와의 연결관계를 서버에게 넘김
+
+        socket.listen((List<int> Data) {
+          String result = utf8.decode(Data); // 한글을 위해 utf-8 decode
+          if(result.length<7){  //서버에서 sendMessage()로 단어만 딸랑 보내는 거 수신
+            if(result[0]=='l') { //투표결과 수신
+              maxIndex = int.parse(result[1]);
+              _showResult(1);
+            }
+            else if(result[0]=='n')
+            {
+              maxIndex = int.parse(result[1]);
+              _showResult(0);
+            }else if(result == ','){  //마지막 찬스 결과 수신
+              _showResult(0);
+            }else if(result == ',,'){
+              _showResult(1);
+            }
+            else //제시어 수신
+              showWordToClient(result); //팝업창 띄우고
+          }
+
+          if (result.length != result.split("connection@")[0].length)
+            splitHostingMsg(result);
+          else {
+            List<String> temp = [];
+            temp = splitData(result);
+
+            msgList.insert(0, MessageItem(temp[0], temp[1], temp[2]));
+            update();
+          }
+          },
+          onDone: ()=>print("done"),
+          onError: (e)=>print(e),
+        );
+      }
+    ).catchError((e) {print(e);});
+  }
+
+  // 서버로부터 받아온 데이터 split (클라이언트 쪽에서)
+  List<String> splitData(String m)
+  {
+    String temp1, temp3;
+    List<String> result = [];
+    temp1 = m.split("code1:::")[0]; // ip
+    temp3 = m.split("code2:::")[1]; // message
+    result.add(temp1);
+    result.add(m.substring((temp1.length+8), (temp1.length+8)+(m.length - temp1.length - 16 - temp3.length))); // nickname
+    result.add(temp3);
+
+    return result;
+  }
+
+
+  void splitHostingMsg(String msg)
+  {
+    for (int i=0; i<6; i++)
+    {
+      if (msg.split(":")[i].substring(0,1).contains("1"))
+      {
+        nickListInfo[i] = msg.split(":")[i].substring(1,msg.split(":")[i].length);
+        imageInfo[i] = true;
+      }
+      else
+      {
+        nickListInfo[i] = "";
+        imageInfo[i] = false;
+      }
+    }
+    update();
   }
 
 
@@ -101,6 +188,7 @@ class GameController extends GetxController {
         break;
       }
     }
+    update();
   }
 
   // user disconnect시, 호출
@@ -113,6 +201,29 @@ class GameController extends GetxController {
         imageInfo[i] = false;
       }
     }
+    update();
+  }
+
+  // client disconncect
+  void disconnectFromServer()
+  {
+    print("disconnectFromServer");
+
+    for (int i =0; i<6 ;i++) {
+      nickListInfo[i] = "";
+      imageInfo[i] = false;
+    }
+
+    sendMessage("${clientSocket.remoteAddress.toString()}disconnect:::${myInfoController.myName}");
+
+    clientSocket.close();
+    isClientConnect = false;
+    update();
+  }
+
+  void sendMessage(String message) {
+    clientSocket.encoding = utf8;
+    clientSocket.write("$message\n"); // send message
   }
 
   // 투표 계산
@@ -149,7 +260,7 @@ class GameController extends GetxController {
     return 0; // for safety
   }
 
-  // 메시지 보내기
+  // 메시지 보내기 (서버용)
   void submitMessage()
   {
     if (submitController.text.isEmpty) return;
@@ -164,6 +275,11 @@ class GameController extends GetxController {
       }
     }
 
+    submitMsg();
+  }
+
+  // 메시지 보내기 (서버, 클라이언트 둘 다)
+  void submitMsg() {
     data = makeData(myInfoController.myIp, myInfoController.myName, submitController.text);
     handleMessageList();
 
@@ -199,7 +315,7 @@ class GameController extends GetxController {
     );
   }
 
-  // 시작할 때 단어 선택 및 타이머 시작
+  // 시작할 때 단어 선택 및 타이머 시작 (서버)
   void showWord()
   {
     liar = Random().nextInt(socketController.clientSocket.length+1); //라이어 뽑기 (0부터 clientSocket.length 숫자까지 반환)
@@ -230,7 +346,22 @@ class GameController extends GetxController {
       voteResult[i] = 0;
     voteCount = 0;
 
+    update();
+
     startTimer();
+  }
+
+  void showWordToClient(String msg) {
+    Get.defaultDialog(
+        title: '당신은',
+        middleText: (msg == "라이어") ? '라이어 당첨!!' : '일반 시민 입니다.\n제시어는 [$msg]',
+        textCancel: 'Ok'
+    );
+
+    vote=1;
+    time.value = gameTime;
+    for (int i=0;i<6;i++)
+      voteResult[i] = 0;
   }
 
   // 메인 게임 타이머

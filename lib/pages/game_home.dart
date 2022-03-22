@@ -7,6 +7,7 @@ import 'package:liar_getx/widgets/face_info.dart';
 import 'package:liar_getx/widgets/submit_widget.dart';
 import 'package:liar_getx/widgets/message_list_widget.dart';
 import 'package:liar_getx/controller/socket_controller.dart';
+import 'package:liar_getx/widgets/game_control_button.dart';
 
 class GameHome extends StatelessWidget {
   MyInfoController myInfoController = Get.find<MyInfoController>();
@@ -35,27 +36,13 @@ class GameHome extends StatelessWidget {
                 child: GetBuilder<GameController>(builder: (_) {
                   return Row(
                     children: [
-                      (gameController.isServer) ?
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
-                        child: RaisedButton(
-                          child: Text("게임시작"),
-                          onPressed: () {
-                            (gameController.isConnect) ? gameController.showWord() :
-                            Get.snackbar('Error', "생성된 방이 없습니다", snackPosition: SnackPosition.BOTTOM);
-                          },
-                        )
-                      ) : Padding(
-                          padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
-                          child: RaisedButton(
-                            child: Text("접속하기"),
-                            onPressed: ()=> print("접속하기"),
-                          )
-                      ),
+                      (gameController.isServer) ? GameControlButton(title: "게임시작", condition: 0)
+                        : (gameController.isClientConnect) ? GameControlButton(title: "나가기", condition: 2)
+                          : GameControlButton(title: "방입장", condition: 1),
                       (gameController.isServer) ?
                       RaisedButton(
-                        child: (gameController.isConnect) ? const Text("방폭파") : const Text("방생성") ,
-                        onPressed: ()=> (gameController.isConnect) ? socketController.stopServer() : socketController.startServer(),
+                        child: (gameController.isServerConnect) ? const Text("방폭파") : const Text("방생성") ,
+                        onPressed: ()=> (gameController.isServerConnect) ? socketController.stopServer() : socketController.startServer(),
                       ) : Container(),
                     ],
                   );

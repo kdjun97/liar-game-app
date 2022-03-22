@@ -8,15 +8,15 @@
 2022.03.11  
 - init Page 구현 완료. (방 고르는 페이지)  
 - getX 적용(기존 코드 개선)  
-- Server용 방만들기 페이지 구현중.
-- getIp 기능 구현중.  
+- Server용 방만들기 페이지 구현.  
+- getIp 기능 구현.  
 
 2022.03.12
 - Custom textFormField 추가  
 - Validation Check 기능 추가
 - Custom Elevated Button 추가  
 - Server Room Page에 Custom Elevated Button 적용  
-- Server 방만들기 페이지 overflow 감지. ListView로 바꿀 예정.  
+- Server 방만들기 페이지 overflow 감지. ListView로 바꿀 예정.(완료)  
 
 2022.03.13
 - Rename directory: utils->widgets  
@@ -39,10 +39,12 @@
 - Message List UI 표현 완료
 
 2022.03.19
-- Client 페이지 삭제
 - 두개의 서버가 생기는 오류 해결
 - Server, Client페이지 GamePage로 합침
 - Message 오류 해결(자신이 보낸 메시지가 왼쪽에 가는 현상 해결)
+
+2022.03.22
+- Client 페이지 삭제
 
 TODO:  
 - faceInfo 클릭시 투표기능 추가

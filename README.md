@@ -3,7 +3,7 @@
 ### Blog
 [Tech Blog](https://kdjun97.github.io/blog/Project_Liar/)   
 
-### Log
+### History
 
 2022.03.11  
 - init Page 구현 완료. (방 고르는 페이지)  
@@ -47,13 +47,13 @@
 - ServerHome 페이지 삭제
 - Client 기능 구현
 
-TODO:  
+### TODO:  
 - faceInfo 클릭시 투표기능 추가
 - 클라이언트 data 송수신 확인 (핸드폰 3대 이상으로 확인)
 - 현재 테스트할 핸드폰이 없어 잠시 중단.
 - assets 이미지 다 바꿔야함.  
 
-개선할 점:  
+### 개선할 점:  
 1. db를 통해 채팅을 포함한 다른 데이터를 관리하면 좋을 것 같음.  
 2. UI의 개선과 exception handling이 필요함(기능 검증이 끝났기 때문에, 게임 진행의 안정성을 고려해야 함)
 3. word select에 대한 새로운 알고리즘 도입(혹은 분야별 word 추가)

@@ -5,6 +5,10 @@
 
 ### History
 
+<details>
+<summary>접기/펼치기</summary>
+
+
 2022.03.11  
 - init Page 구현 완료. (방 고르는 페이지)  
 - getX 적용(기존 코드 개선)  
@@ -46,6 +50,8 @@
 2022.03.22
 - ServerHome 페이지 삭제
 - Client 기능 구현
+
+</details>
 
 ### TODO:  
 - faceInfo 클릭시 투표기능 추가

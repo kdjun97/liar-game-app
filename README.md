@@ -6,8 +6,7 @@
 ### History
 
 <details>
-<summary>접기/펼치기</summary>
-
+<summary>접기/펼치기</summary><br>
 
 2022.03.11  
 - init Page 구현 완료. (방 고르는 페이지)  

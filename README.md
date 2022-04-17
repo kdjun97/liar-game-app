@@ -50,6 +50,9 @@
 - ServerHome 페이지 삭제
 - Client 기능 구현
 
+2022.04.17
+- code refactoring
+
 </details>
 
 ### TODO:  

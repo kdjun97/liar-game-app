@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liar_getx/controller/myinfo_controller.dart';
 import 'package:liar_getx/controller/form_controller.dart';
-import 'package:liar_getx/widgets/custom_elevated_button.dart';
+import 'package:liar_getx/widgets/button/custom_elevated_button.dart';
 import 'package:liar_getx/widgets/custom_text_form_field.dart';
 import 'package:liar_getx/utils/custom_app_bar.dart';
 

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:liar_getx/controller/socket_controller.dart';
 import 'package:liar_getx/controller/myinfo_controller.dart';
-import 'package:liar_getx/widgets/message_list_widget.dart';
+import 'package:liar_getx/widgets/message/message_list_widget.dart';
 
 // 게임에 관련된 클래스
 class GameController extends GetxController {

@@ -1,5 +1,8 @@
 # Code Refactoring
 
+### Blog
+[Tech Blog](https://kdjun97.github.io/flutter/liar-game/)   
+
 ### Image
 
 <details>
@@ -9,9 +12,6 @@
 ![make-room](assets/make-room-page.JPG)  
 
 </details>
-
-### Blog
-[Tech Blog](https://kdjun97.github.io/blog/Project_Liar/)   
 
 ### History
 

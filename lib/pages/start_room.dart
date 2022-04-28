@@ -11,8 +11,8 @@ class StartRoom extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 15.0),
-              child: Image.asset('assets/배너.jpg')
+              margin: const EdgeInsets.only(bottom: 15.0),
+              child: Image.asset('assets/배너.png')
             ),
             const CustomRaisedButton(title: "방만들기", condition: 0),
             const CustomRaisedButton(title: "접속하기", condition: 1),

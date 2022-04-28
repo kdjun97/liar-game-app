@@ -20,7 +20,7 @@ class MakeRoom extends StatelessWidget {
       body: ListView(
         children: [
           const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-          Image.asset('assets/배너2.jpg'),
+          Image.asset('assets/배너2.png'),
           GetBuilder<MyInfoController>(builder: (_) {
             return Column(
               children: [

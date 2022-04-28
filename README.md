@@ -1,5 +1,12 @@
 # Code Refactoring
 
+---  
+
+# Liar Game Ver 0.1
+
+![init-page](assets/init-page.JPG)  
+![make-room](assets/make-room-page.JPG)  
+
 ### Blog
 [Tech Blog](https://kdjun97.github.io/blog/Project_Liar/)   
 

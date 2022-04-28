@@ -3,7 +3,8 @@
 ### Image
 
 <details>
-<summary>접기/펼치기</summary><br>
+<summary>접기/펼치기</summary><br>  
+
 ![init-page](assets/init-page.JPG)  
 ![make-room](assets/make-room-page.JPG)  
 

@@ -1,11 +1,13 @@
 # Code Refactoring
 
----  
+### Image
 
-# Liar Game Ver 0.1
-
+<details>
+<summary>접기/펼치기</summary><br>
 ![init-page](assets/init-page.JPG)  
 ![make-room](assets/make-room-page.JPG)  
+
+</details>
 
 ### Blog
 [Tech Blog](https://kdjun97.github.io/blog/Project_Liar/)   

@@ -1,37 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:liar_refactoring/re/core/utils/helper/form_validation_helper.dart';
 
-// Customizing한 TextFormField임. validation 체크까지 다 가능
-// 1st param = title, 2nd param = TextEditingController, 3rd param = 비밀번호 가리개, 4th param = size
 class CustomTextFormField extends StatelessWidget
 {
-  late String name;
+  String name;
   TextEditingController controller;
-  bool obsc;
+  bool isHideText;
   Size size;
 
   CustomTextFormField({
     Key? key,
     required this.name,
     required this.controller,
-    required this.obsc,
+    required this.isHideText,
     required this.size,
   });
+
 
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.fromLTRB((size.width/2)-100, 0, (size.width/2)-100, 0),
-        child: TextFormField
-        (
-          validator: (value)
-          {
-            if (value == null || value.isEmpty) {
+        child: TextFormField(
+          validator: (value) {
+            if (formValidationCheck(value) == false) {
               return 'Please enter $name';
             }
             return null;
           },
           controller: controller,
-          obscureText: obsc,
+          obscureText: isHideText,
           decoration: InputDecoration(
             filled: false,
             labelText: name,

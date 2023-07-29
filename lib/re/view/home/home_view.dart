@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:liar_refactoring/re/core/route/pages.dart';
 import 'package:liar_refactoring/re/core/utils/constants/asset_image_constant.dart';
 import 'package:liar_refactoring/re/core/utils/constants/font_constants.dart';
 import 'package:liar_refactoring/re/core/widgets/custom_elevated_button.dart';
-import 'package:liar_refactoring/re/view/home/home_viewmodel.dart';
 import 'package:liar_refactoring/re/view/home/utils/constants.dart';
 
 // 첫 게임 시작할 때 페이지
 class HomeView extends StatelessWidget {
-  final homeViewModel = Get.find<HomeViewModel>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +23,13 @@ class HomeView extends StatelessWidget {
               CustomElevatedButton(
                 title: HomeViewConstants.makeRoomText,
                 fontSize: FontConstants.mainFontSize,
-                onClickEvent: homeViewModel.moveMakeRoom,
+                onClickEvent: moveMakeRoom,
                 padding: const EdgeInsets.fromLTRB(0, 5.0, 0, 5.0),
               ),
               CustomElevatedButton(
                 title: HomeViewConstants.connectRoomText,
                 fontSize: FontConstants.mainFontSize,
-                onClickEvent: homeViewModel.moveConnectRoom,
+                onClickEvent: moveConnectRoom,
                 padding: const EdgeInsets.fromLTRB(0, 5.0, 0, 5.0),
               ),
               CustomElevatedButton(
@@ -51,6 +49,14 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void moveMakeRoom() {
+    Get.toNamed(RoutesName.INFOSETTING, arguments: HomeViewConstants.makeRoomText);
+  }
+
+  void moveConnectRoom() {
+    Get.toNamed(RoutesName.INFOSETTING, arguments: HomeViewConstants.connectRoomText);
   }
 
   void gameHelperDialog() {

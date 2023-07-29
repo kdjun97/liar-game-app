@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:liar_refactoring/controller/myinfo_controller.dart';
 import 'package:liar_refactoring/controller/socket_controller.dart';
-import 'package:liar_refactoring/model/word_model.dart';
+import 'package:liar_refactoring/re/core/model/word_model.dart';
 import 'package:liar_refactoring/widgets/message/message_list_widget.dart';
 
 // 게임에 관련된 클래스

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:liar_refactoring/controller/game_controller.dart';
 import 'package:liar_refactoring/controller/myinfo_controller.dart';
 import 'package:liar_refactoring/controller/socket_controller.dart';
-import 'package:liar_refactoring/utils/custom_app_bar.dart';
+import 'package:liar_refactoring/re/core/widgets/custom_app_bar.dart';
 import 'package:liar_refactoring/widgets/button/game_menu_button.dart';
 import 'package:liar_refactoring/widgets/face_icon/face_row.dart';
 import 'package:liar_refactoring/widgets/message/message_list_widget.dart';

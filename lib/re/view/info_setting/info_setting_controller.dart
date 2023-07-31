@@ -43,15 +43,15 @@ class InfoSettingController extends GetxController {
   }
 
   void setUserInformation(String title) {
-    bool isBoss = (title == InfoSettingConstants.infoConnectTitleText) ? false : true;
+    bool isServer = (title == InfoSettingConstants.infoConnectTitleText) ? false : true;
     userManager.myName.value = nameController.text;
-    userManager.isBoss.value = isBoss;
-    setServerIp(isBoss);
+    userManager.isServer.value = isServer;
+    setServerIp(isServer);
     gameController.setUser(nameController.text, myIpController.text);
   }
 
-  void setServerIp(bool isBoss) {
-    if (isBoss) {
+  void setServerIp(bool isServer) {
+    if (isServer) {
       userManager.serverIpAddress.value = myIpController.text;
     } else {
       userManager.serverIpAddress.value = serverIpController.text;

@@ -4,7 +4,7 @@ class UserManager {
   var myIpAddress = "-".obs;
   var myName = "-".obs;
   var serverIpAddress = "-".obs;
-  var isBoss = false.obs;
+  var isServer = false.obs;
 
   void updateMyIp(String ipAddress) {
     myIpAddress.value = ipAddress;
@@ -18,14 +18,14 @@ class UserManager {
     serverIpAddress.value = ipAddress;
   }
 
-  void updateBoss(bool isBoss) {
-    this.isBoss.value = isBoss;
+  void updateServer(bool isServer) {
+    this.isServer.value = isServer;
   }
 
   void clearAllInformation() {
     myIpAddress.value = "-";
     myName.value = "-";
     serverIpAddress.value = "-";
-    isBoss.value = false;
+    isServer.value = false;
   }
 }

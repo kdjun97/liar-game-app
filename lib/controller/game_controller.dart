@@ -6,21 +6,24 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:liar_refactoring/controller/myinfo_controller.dart';
 import 'package:liar_refactoring/controller/socket_controller.dart';
+import 'package:liar_refactoring/re/core/manager/user_manager.dart';
 import 'package:liar_refactoring/re/core/model/word_model.dart';
+import 'package:liar_refactoring/re/view/game/game_view.dart';
 import 'package:liar_refactoring/widgets/message/message_list_widget.dart';
 
 // 게임에 관련된 클래스
 class GameController extends GetxController {
-  late bool isServer;
+  final userManager = Get.find<UserManager>();
+  var gameStatus = GameStatus.stop.obs;
 
-  late TextEditingController submitController = TextEditingController(); // submit textForm
+  TextEditingController submitController = TextEditingController(); // submit textForm
   MyInfoController myInfoController = Get.find<MyInfoController>();
   SocketController socketController = Get.find<SocketController>();
   List<MessageItem> msgList = [];
 
   int gameTime = 20; // 게임시간
   bool isGameStart = false; // 게임이 시작했는지 알려주는 bool 값
-  var time = 0.obs; // 남은시간
+  var timeLimit = 0.obs; // 남은시간
 
   List<String> nickListInfo = ["", "", "", "", "", ""]; // Nickname 정보
   List<String> hostListInfo = ["", "", "", "", "", ""]; // 사용자 IP 정보
@@ -34,12 +37,10 @@ class GameController extends GetxController {
   late int liar; // liar의 index
   late int wordNum; // random하게 정해진 word의 index
 
-  bool isServerConnect = false; // 소켓 연결 되었는지 알려주는 bool 값(방생성)
-  bool isClientConnect = false; // 클라이언트용 연결 여부 알려주는 bool 값
+  bool isConnectedServer = false; // 소켓 연결 되었는지 알려주는 bool 값(방생성)
+  bool isConnectedClient = false; // 클라이언트용 연결 여부 알려주는 bool 값
   late ServerSocket serverSocket; // 서버용
   late Socket clientSocket; // 클라이언트용
-
-  void setServer(bool ck) => isServer=ck;
 
   void setUser(String nick, String host)
   {
@@ -52,7 +53,7 @@ class GameController extends GetxController {
 
   // 방생성 방폭파 버튼
   onChangeRoom() {
-    isServerConnect = !isServerConnect;
+    isConnectedServer = !isConnectedServer;
     update();
   }
 
@@ -78,7 +79,7 @@ class GameController extends GetxController {
   }
 
   // 클라이언트 -> 서버에 연결
-  void connectToServer() async
+  Future<void> connectToServer() async
   {
     print("Destination Address: ${myInfoController.srvIp}");
 
@@ -86,7 +87,7 @@ class GameController extends GetxController {
         .then
       ((socket) {
         clientSocket = socket;
-        isClientConnect = true;
+        isConnectedClient = true;
         update();
 
         sendMessage("${clientSocket.remoteAddress.toString()}connection:::${myInfoController.myName}"); // 클라이언트와의 연결관계를 서버에게 넘김
@@ -205,7 +206,7 @@ class GameController extends GetxController {
     sendMessage("${clientSocket.remoteAddress.toString()}disconnect:::${myInfoController.myName}");
 
     clientSocket.close();
-    isClientConnect = false;
+    isConnectedClient = false;
     update();
   }
 
@@ -329,7 +330,7 @@ class GameController extends GetxController {
     );
 
     vote=1;
-    time.value = gameTime;
+    timeLimit.value = gameTime;
     for (int i=0;i<6;i++)
       voteResult[i] = 0;
     voteCount = 0;
@@ -347,7 +348,7 @@ class GameController extends GetxController {
     );
 
     vote=1;
-    time.value = gameTime;
+    timeLimit.value = gameTime;
     for (int i=0;i<6;i++)
       voteResult[i] = 0;
   }
@@ -356,17 +357,17 @@ class GameController extends GetxController {
   void startTimer()
   {
     print("메인 타이머 시작");
-    time.value = gameTime;
-    print(time.value);
+    timeLimit.value = gameTime;
+    print(timeLimit.value);
 
     Timer _timer = Timer.periodic(const Duration(seconds: 1),
       (Timer timer) {
-          if (time.value < 1) {
+          if (timeLimit.value < 1) {
             timer.cancel();
             _showVote();   //투표 알림창
             subTimer(); //투표 시간 초 시작
           } else {
-            time.value = time.value - 1;
+            timeLimit.value = timeLimit.value - 1;
           }
         },
     );
@@ -376,11 +377,11 @@ class GameController extends GetxController {
   void subTimer()
   {
     print("투표 타이머");
-    time.value = 10;
+    timeLimit.value = 10;
 
     Timer _timer2 = Timer.periodic(const Duration(seconds: 1),
       (Timer timer) {
-          if (time.value < 1)
+          if (timeLimit.value < 1)
           {
             timer.cancel();
             maxIndex = Who(); //투표 최다 득표자의 인덱스
@@ -393,7 +394,7 @@ class GameController extends GetxController {
             }
 
           } else {
-            time.value = time.value - 1;
+            timeLimit.value = timeLimit.value - 1;
           }
         },
     );

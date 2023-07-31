@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:liar_refactoring/binding/game_binding.dart';
 import 'package:liar_refactoring/binding/myinfo_binding.dart';
 import 'package:liar_refactoring/binding/socket_binding.dart';
-import 'package:liar_refactoring/pages/game_home.dart';
+import 'package:liar_refactoring/re/view/game/game_view.dart';
 import 'package:liar_refactoring/re/view/info_setting/info_setting_controller.dart';
 import 'package:liar_refactoring/re/view/info_setting/info_setting_view.dart';
 import 'package:liar_refactoring/re/view/home/home_view.dart';
@@ -33,7 +33,7 @@ class Routes {
     ),
     GetPage(
       name: RoutesName.GAMEHOME,
-      page: () => GameHome(),
+      page: () => GameView(),
       transition: Transition.noTransition,
     ),
   ];

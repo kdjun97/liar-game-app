@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:liar_refactoring/controller/socket_controller.dart';
 import 'package:liar_refactoring/re/core/manager/user_manager.dart';
 import 'package:liar_refactoring/re/view/game/game_view.dart';
 import 'package:liar_refactoring/re/view/game/model/game_user_model.dart';
@@ -26,7 +25,6 @@ class GameViewController extends GetxController {
   ResultPopupStatus? resultPopupStatus;
 
   TextEditingController submitController = TextEditingController(); // submit textForm
-  SocketController socketController = Get.find<SocketController>();
   List<MessageModel> messageList = [];
 
   var timeLimit = 0.obs; // 남은시간

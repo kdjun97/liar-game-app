@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
-import 'package:liar_refactoring/controller/socket_controller.dart';
 import 'package:liar_refactoring/re/core/manager/user_manager.dart';
 import 'package:liar_refactoring/re/core/widgets/custom_app_bar.dart';
 import 'package:liar_refactoring/re/view/game/utils/constants.dart';
@@ -12,7 +11,6 @@ import 'package:liar_refactoring/re/view/game/widgets/submit_message_card.dart';
 
 class GameView extends StatelessWidget {
   GameViewController gameController = Get.find<GameViewController>();
-  SocketController socketController = Get.find<SocketController>();
   final userManager = Get.find<UserManager>();
 
   @override

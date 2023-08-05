@@ -1,5 +1,16 @@
 # Code Refactoring
 
+### 리팩토링 하면서 느낀점
+
+controller쪽은 틀만 잡아놓고 그냥 냅두는 것으로 결정하였다.  
+- naming 너무 알아보기 어렵게 짰었다
+- 에러 처리가 전혀 없는 로직 
+- view와 controller의 분리 되지 않음
+- 비즈니스 로직이 이상함..
+
+크게 생각하면 위 4가지 정도를 느꼈으나, 태어나서 첫 앱 개발이라 한편으로는 기특하기도 했음.  
+하지만 다음부턴 이런식으로 짜는 일은 없을거라고 다짐!  
+
 ### Blog
 [Tech Blog](https://kdjun97.github.io/flutter/liar-game/)   
 
@@ -65,6 +76,11 @@
 
 2023.07.29  
 - code refactoring
+
+2023.08.05  
+- code refactoring 
+- Exception Handling 포기
+- 로직이나 수정할 부분이 너무 많아서 기존 코드만 바꾸고 gameController쪽은 냅두는걸로..
 
 </details>
 

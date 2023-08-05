@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:liar_refactoring/binding/game_binding.dart';
-import 'package:liar_refactoring/binding/myinfo_binding.dart';
-import 'package:liar_refactoring/binding/socket_binding.dart';
 import 'package:liar_refactoring/re/view/game/game_view.dart';
+import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
 import 'package:liar_refactoring/re/view/info_setting/info_setting_controller.dart';
 import 'package:liar_refactoring/re/view/info_setting/info_setting_view.dart';
 import 'package:liar_refactoring/re/view/home/home_view.dart';
@@ -25,9 +23,7 @@ class Routes {
       page: () => InfoSettingView(),
       bindings: [
         InfoSettingBinding(),
-        MyInfoBinding(),
-        GameBinding(),
-        SocketBinding()
+        GameViewBinding(),
       ],
       transition: Transition.noTransition,
     ),

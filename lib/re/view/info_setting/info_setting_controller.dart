@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_ip_address/get_ip_address.dart';
-import 'package:liar_refactoring/controller/game_controller.dart';
+import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
 import 'package:liar_refactoring/re/core/manager/user_manager.dart';
 import 'package:liar_refactoring/re/view/info_setting/models/ip_address_model.dart';
 import 'package:liar_refactoring/re/view/info_setting/utils/constants.dart';
@@ -17,7 +17,7 @@ class InfoSettingController extends GetxController {
   TextEditingController nameController = TextEditingController(); // name
   TextEditingController serverIpController = TextEditingController(); // Server Ip
   TextEditingController myIpController = TextEditingController(); // My Ip
-  var gameController = Get.find<GameController>();
+  var gameController = Get.find<GameViewController>();
   var userManager = Get.find<UserManager>();
 
   Future<void> loadIpButtonClickedEvent() async {
@@ -47,7 +47,7 @@ class InfoSettingController extends GetxController {
     userManager.myName.value = nameController.text;
     userManager.isServer.value = isServer;
     setServerIp(isServer);
-    gameController.setUser(nameController.text, myIpController.text);
+    gameController.setUserInformation(nameController.text, myIpController.text);
   }
 
   void setServerIp(bool isServer) {

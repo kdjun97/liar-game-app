@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:liar_refactoring/controller/game_controller.dart';
+import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
 import 'package:liar_refactoring/controller/socket_controller.dart';
 import 'package:liar_refactoring/re/core/manager/user_manager.dart';
 import 'package:liar_refactoring/re/core/widgets/custom_app_bar.dart';
 import 'package:liar_refactoring/re/view/game/utils/constants.dart';
 import 'package:liar_refactoring/re/view/game/widgets/game_menu_button.dart';
-import 'package:liar_refactoring/widgets/face_icon/face_row.dart';
-import 'package:liar_refactoring/widgets/message/message_list_widget.dart';
-import 'package:liar_refactoring/widgets/message/submit_widget.dart';
+import 'package:liar_refactoring/re/view/game/widgets/participated_user_list.dart';
+import 'package:liar_refactoring/re/view/game/widgets/game_message_list.dart';
+import 'package:liar_refactoring/re/view/game/widgets/submit_message_card.dart';
 
 class GameView extends StatelessWidget {
-  GameController gameController = Get.find<GameController>();
+  GameViewController gameController = Get.find<GameViewController>();
   SocketController socketController = Get.find<SocketController>();
   final userManager = Get.find<UserManager>();
 
@@ -27,7 +27,7 @@ class GameView extends StatelessWidget {
               gameMenuButton(),
             ],
           ),
-          GetBuilder<GameController>(builder: (_) {
+          GetBuilder<GameViewController>(builder: (_) {
             return Container(
               decoration: const BoxDecoration(
                 border: Border(
@@ -35,13 +35,13 @@ class GameView extends StatelessWidget {
                   top:BorderSide(width:2, color:Colors.black),
                 ),
               ),
-              child: FaceRow(gameController: gameController), // 유저들 프로필 정보
+              child: ParticipatedUserList(gameController: gameController), // 유저들 프로필 정보
             );
           }),
-          GetBuilder<GameController>(builder: (_) {
-            return MessageListWidget(msgList: gameController.msgList);
+          GetBuilder<GameViewController>(builder: (_) {
+            return GameMessageList(messageList: gameController.messageList);
           }),
-          SubmitWidget(),
+          SubmitMessageCard(),
         ],
       )
     );
@@ -80,4 +80,8 @@ class GameView extends StatelessWidget {
 
 enum GameStatus {
   start, stop
+}
+
+enum ResultPopupStatus {
+  correctAnswer, wrongAnswer, whoIsLiarPopup
 }

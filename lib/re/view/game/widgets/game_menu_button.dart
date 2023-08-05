@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:liar_refactoring/controller/game_controller.dart';
-import 'package:liar_refactoring/re/core/utils/constants/font_constants.dart';
+import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
+import 'package:liar_refactoring/re/core/utils/values/font_values.dart';
 import 'package:liar_refactoring/re/core/widgets/custom_elevated_button.dart';
 import 'package:liar_refactoring/re/view/game/game_view.dart';
 import 'package:liar_refactoring/re/view/game/utils/constants.dart';
@@ -10,7 +10,7 @@ extension GameMenuButton on GameView {
   Widget gameMenuButton() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 0),
-      child: GetBuilder<GameController>(builder: (_) {
+      child: GetBuilder<GameViewController>(builder: (_) {
         return Row(
           children: [
             serverOrClientFirstButton(),
@@ -25,7 +25,7 @@ extension GameMenuButton on GameView {
     if (userManager.isServer.value) {
       return CustomElevatedButton(
         title: GameViewConstants.gameStart,
-        fontSize: FontConstants.subFontSize,
+        fontSize: FontValues.subFontSize,
         padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
         onClickEvent: () {
           if (gameController.isConnectedServer) {
@@ -48,7 +48,7 @@ extension GameMenuButton on GameView {
     if (gameController.isConnectedClient) {
       return CustomElevatedButton(
         title: GameViewConstants.leaveRoom,
-        fontSize: FontConstants.subFontSize,
+        fontSize: FontValues.subFontSize,
         padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
         onClickEvent: () {
           gameController.disconnectFromServer();
@@ -57,10 +57,10 @@ extension GameMenuButton on GameView {
     } else {
       return CustomElevatedButton(
         title: GameViewConstants.enterRoom,
-        fontSize: FontConstants.subFontSize,
+        fontSize: FontValues.subFontSize,
         padding: const EdgeInsets.fromLTRB(60.0, 0.0, 30.0, 0),
         onClickEvent: () async {
-          await gameController.connectToServer();
+          await gameController.clientConnectToServer();
         },
       );
     }
@@ -78,17 +78,17 @@ extension GameMenuButton on GameView {
     if (gameController.isConnectedServer) {
       return CustomElevatedButton(
         title: GameViewConstants.leaveRoomButtonTitle,
-        fontSize: FontConstants.subFontSize,
+        fontSize: FontValues.subFontSize,
         onClickEvent: () {
-          socketController.stopServer();
+          gameController.stopServer();
         },
       );
     } else {
       return CustomElevatedButton(
         title: GameViewConstants.makeRoomButtonTitle,
-        fontSize: FontConstants.subFontSize,
+        fontSize: FontValues.subFontSize,
         onClickEvent: () {
-          socketController.startServer();
+          gameController.startServer();
         },
       );
     }

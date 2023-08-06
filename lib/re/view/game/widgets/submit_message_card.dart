@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:liar_refactoring/controller/game_controller.dart';
+import 'package:liar_refactoring/re/view/game/game_view_controller.dart';
 
-class SubmitWidget extends StatelessWidget {
-  GameController gameController = Get.find<GameController>();
+class SubmitMessageCard extends StatelessWidget {
+  GameViewController gameController = Get.find<GameViewController>();
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +13,10 @@ class SubmitWidget extends StatelessWidget {
           controller: gameController.submitController,
         ),
         trailing: IconButton (
-          icon: Icon(Icons.send),
+          icon: const Icon(Icons.send),
           color: Colors.blue,
           disabledColor: Colors.grey,
-          onPressed: () => gameController.submitMessage()
+          onPressed: () => gameController.submitMessageToServer()
           //(socketController.clientSocket.isNotEmpty) ? gameController.submitMessage : null,
         ),
       ),

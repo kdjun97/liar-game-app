@@ -63,14 +63,20 @@
 2022.04.17
 - code refactoring
 
+2023.07.29  
+- code refactoring
+
+2023.08.05  
+- code refactoring 
+- Exception Handling 포기
+- 로직이나 수정할 부분이 너무 많아서 기존 코드만 바꾸고 gameController쪽은 냅두는걸로..
+
 </details>
 
 ### TODO:  
 - faceInfo 클릭시 투표기능 추가
 - 클라이언트 data 송수신 확인 (핸드폰 3대 이상으로 확인)
 - 현재 테스트할 핸드폰이 없어 잠시 중단.
-- assets 이미지 다 바꿔야함.  
-- controller code refactoring
 
 ### 개선할 점:  
 1. db를 통해 채팅을 포함한 다른 데이터를 관리하면 좋을 것 같음.  
@@ -78,3 +84,14 @@
 3. word select에 대한 새로운 알고리즘 도입(혹은 분야별 word 추가)
 4. 6명 초과의 인원에 대한 exception handling
 5. 서로 주고받는 데이터에 대한 로직 변경(string으로 보내는 현재의 로직 변경)
+
+### 리팩토링 하면서 느낀점
+
+controller쪽은 틀만 잡아놓고 그냥 냅두는 것으로 결정하였다.  
+- naming 너무 알아보기 어렵게 짰었다
+- 에러 처리가 전혀 없는 로직 
+- view와 controller의 분리 되지 않음
+- 비즈니스 로직이 이상함..
+
+크게 생각하면 위 3가지 정도를 느꼈으나, 태어나서 첫 앱 개발이라 한편으로는 기특하기도 했음.  
+하지만 다음부턴 이런식으로 짜는 일은 없을거라고 다짐!  
